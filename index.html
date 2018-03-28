@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <title></title>
+  </head>
+  <body>
+    <div id="app">
+      <input type="text" v-model="name">
+      <p>{{ summary }}</p>
+    </div>
+  </body>
+</html>
+<script>
+  var app = new Vue({
+    el: '#app',
+    data: {
+      name: '',
+      charValue: [
+        {
+          ch: ['a', 'i', 'j', 'q', 'y', 'ก', 'ด', 'ท', 'ถ', 'ภ', 'ฤ', 'า', 'ุ', 'ำ', '่'],
+          value: 1
+        },
+        {
+          ch: ['b', 'k', 'r', 'ข', 'ช', 'บ', 'ป', 'ง', 'เ', 'แ', 'ู', '้'],
+          value: 2
+        },
+        {
+          ch: ['c', 'g', 'l', 's', 'ฆ', 'ฑ', 'ฒ', 'ต', 'ฃ', '๋'],
+          value: 3
+        },
+        {
+          ch: ['d', 'm', 't', 'ค', 'ธ', 'ร', 'ญ', 'ษ', 'โ', 'ะ', 'ิ', 'ั'],
+          value: 4
+        },
+        {
+          ch: ['e', 'h', 'n', 'x', 'ฉ', 'ณ', 'ฌ', 'น', 'ม', 'ห', 'ฮ', 'ฎ', 'ฬ', 'ึ'],
+          value: 5
+        },
+        {
+          ch: ['u', 'v', 'w', 'จ', 'ล', 'ว', 'อ', 'ใ'],
+          value: 6
+        },
+        {
+          ch: ['o', 'z', 'ศ', 'ส', 'ซ', 'ี', 'ื', '๊'],
+          value: 7
+        },
+        {
+          ch: ['f', 'p', 'ย', 'พ', 'ฟ', 'ผ', 'ฝ', '็'],
+          value: 8
+        },
+        {
+          ch: ['ฏ', 'ฐ', 'ไ', '์'],
+          value: 9
+        }
+      ]
+    },
+    computed: {
+      summary() {
+        const name = this.name.split('')
+        let val = 0
+        for (let i=0; i<name.length; i+=1) {
+          for (let j=0; j<this.charValue.length; j+=1) {
+            for (let k=0; k<this.charValue[j].ch.length; k+=1) {
+              if(name[i] === this.charValue[j].ch[k]) {
+                val+=this.charValue[j].value
+                continue
+              }
+            }
+          }
+        }
+        return val
+      }
+    }
+  })
+</script>
